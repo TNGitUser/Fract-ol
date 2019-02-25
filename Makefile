@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/22 16:48:00 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/25 10:16:54 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ End=\x1b[0m
 
 TARGET = fractol
 
-SRC :=	
+SRC := ./src/main.c ./src/init.c ./src/handle.c /src/err.c
 OBJ = $(SRC:.c=.o)
 LIB =	./libft.a ./libmlx.a
 
 CFLAGS = -Wall -Wextra -Werror
 DEB = #-O3 -g3 -fsanitize=address
-LIBFLAGS = -framework OpenGL -framework AppKit -lm
+LIBFLAGS = -framework OpenGL -framework AppKit -lm -lpthread
 
 ifndef VERBOSE
 .SILENT:
