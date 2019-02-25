@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   threads.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/25 14:27:30 by lucmarti          #+#    #+#             */
+/*   Updated: 2019/02/25 14:46:32 by lucmarti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "core.h"
+
+void	start_dthreads(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->threads->nth)
+	{
+		pthread_create(&(data->threads->workers[i]), NULL,
+				data->draw[data->f->type], data);
+		++i;
+	}
+	i = 0;
+	while (i < data->threads->nth)
+	{
+		pthread_join(data->threads->workers[i], NULL);
+		++i;
+	}
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->image->ptr ,0 , 0);
+}
+
+int		get_thread(t_data *data, pthread_t thr)
+{
+	int i;
+
+	i = 0;
+	while (i < data->threads->nth &&
+			!pthread_equal(thr, data->threads->workers[i]))
+		++i;
+	return (i);
+}

@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/25 10:21:01 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/25 14:36:01 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ End=\x1b[0m
 
 TARGET = fractol
 
-SRC := ./src/main.c ./src/init.c ./src/handle.c ./src/err.c
+SRC := ./src/main.c ./src/init.c ./src/handler.c ./src/err.c ./src/julia.c\
+	./src/utils.c ./src/pixel_color.c ./src/threads.c
 OBJ = $(SRC:.c=.o)
 LIB =	./libft.a ./libmlx.a
 
