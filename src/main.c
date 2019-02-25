@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 15:41:46 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:02:38 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	init_draw(t_data *data)
 		ft_die("Image retrieving failed.");
 	start_dthreads(data);
 	mlx_hook(data->mlx_win, 2, 0, key_handler, data);
-	mlx_hook(data->mlx_win, 6, 0, mouse_handler, data);
+	mlx_hook(data->mlx_win, 4, 0, mouse_handler, data);
+	mlx_hook(data->mlx_win, 6, 0, mouse_move, data);
 	mlx_loop(data->mlx);
 }
 
@@ -38,19 +39,13 @@ int		main(int ac, char **av)
 	data = NULL;
 	(void)av;
 	if (ac != 2)
-		ft_die("usage: ./fractol [julia/mandelbrot] [-t num_of_thread]");
+		ft_die("usage: ./fractol [julia | mandelbrot] [-t num_of_thread]");
 	if (ft_strcmp("julia", av[1]) == 0)
-	{
 		type = 0;
-		ft_putendl("Julia selected");
-	}
 	else if (ft_strcmp("mandelbrot", av[1]) == 0)
-	{
 		type = 1;
-		ft_putendl("Mandelbrot selected");
-	}
 	else
-		ft_die("usage: ./fractol [julia/mandelbrot] [-t num_of_thread]");
-	data = init_main(20, type);
+		ft_die("usage: ./fractol [julia | mandelbrot] [-t num_of_thread]");
+	data = init_main(1, type);
 	return (0);
 }

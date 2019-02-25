@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 15:52:45 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:23:38 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # include <pthread.h>
 
-#include <stdio.h>
+# include <stdio.h>
 
 typedef	struct	s_frac
 {
@@ -90,13 +90,16 @@ t_data			*init_main(int thread_number, int type);
 **		handler.c
 */
 int				key_handler(int keycode, void *param);
-int				mouse_handler(int x, int y, void *param);
+int				mouse_handler(int button, int x, int y, void *param);
+int				mouse_move(int x, int y, void *param);
 int				win_close(void *param);
 
 /*
 **		handler_aux.c
 */
 void			move_update(int keycode, t_data *data);
+void			mouse_zoom(int keycode, int x, int y, t_data *data);
+void			reset(t_data *data);
 
 /*
 **		utils.c

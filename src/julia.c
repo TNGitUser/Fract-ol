@@ -6,13 +6,13 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:42:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 15:41:21 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 16:24:07 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static void	julia_draw(long double cR, long double cI,
+static void	julia_draw(long double c_r, long double c_i,
 		t_vector2 *v, t_data *data)
 {
 	long double	zr;
@@ -26,8 +26,8 @@ static void	julia_draw(long double cR, long double cI,
 	while (i < data->f->iteration && zr * zr + zi * zi < 4)
 	{
 		tmp = zr;
-		zr = zr * zr - zi * zi + cR;
-		zi = 2 * tmp * zi + cI;
+		zr = zr * zr - zi * zi + c_r;
+		zi = 2 * tmp * zi + c_i;
 		++i;
 		if (i == data->f->iteration)
 			pixel_color(data, v, 0x0a2440);
