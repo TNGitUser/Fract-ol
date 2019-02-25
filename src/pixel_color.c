@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:07:48 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 14:07:50 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:25:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	pixel_color(t_data *data, t_vector2 *vec, int color)
 	int			B;
 	int			offset;
 	long double img_size;
-	
+
 	if (color == 0)
 		return;
 	img_size = data->width * data->height * data->image->bpp / 8;

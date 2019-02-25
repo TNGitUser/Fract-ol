@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 14:47:13 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:52:45 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@
 
 # include <pthread.h>
 
+#include <stdio.h>
+
 typedef	struct	s_frac
 {
 	int			type;
+	int			plocked;
 	int			iteration;
 	double		zoom;
 	t_vector2	move;
@@ -84,11 +87,16 @@ void			*julia_start(void *vdata);
 t_data			*init_main(int thread_number, int type);
 
 /*
-**		handle.c
+**		handler.c
 */
 int				key_handler(int keycode, void *param);
 int				mouse_handler(int x, int y, void *param);
 int				win_close(void *param);
+
+/*
+**		handler_aux.c
+*/
+void			move_update(int keycode, t_data *data);
 
 /*
 **		utils.c

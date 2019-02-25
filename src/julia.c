@@ -6,22 +6,22 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:42:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 14:11:03 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:41:21 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
 static void	julia_draw(long double cR, long double cI,
-		t_vector2 v, t_data *data)
+		t_vector2 *v, t_data *data)
 {
 	long double	zr;
 	long double zi;
 	long double tmp;
 	int			i;
 
-	zr = v.x / data->f->zoom + data->pos->v1.x;
-	zi = v.y / data->f->zoom + data->pos->v1.y;
+	zr = v->x / data->f->zoom + data->pos->v1.x;
+	zi = v->y / data->f->zoom + data->pos->v1.y;
 	i = 0;
 	while (i < data->f->iteration && zr * zr + zi * zi < 4)
 	{
@@ -30,9 +30,9 @@ static void	julia_draw(long double cR, long double cI,
 		zi = 2 * tmp * zi + cI;
 		++i;
 		if (i == data->f->iteration)
-			pixel_color(data, &v, 0x122440);
+			pixel_color(data, v, 0x0a2440);
 		else
-			pixel_color(data, &v, 0x122440 * i);
+			pixel_color(data, v, 0x0a2440 * i);
 	}
 }
 
@@ -51,7 +51,7 @@ static void	julia_compute(long double img_x, long double img_y, t_data *data)
 		while (vec.y < img_y && vec.y < data->height)
 		{
 			++(vec.y);
-			julia_draw(data->f->c_re, data->f->c_im, vec, data);
+			julia_draw(data->f->c_re, data->f->c_im, &vec, data);
 		}
 		++(vec.x);
 	}

@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 14:34:09 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/25 15:48:03 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static t_frac	*init_julia(void)
 		ft_die("julia init failed.");
 	julia->move.x = 0;
 	julia->move.y = 0;
-	julia->zoom = 1;
+	julia->zoom = 100;
 	julia->c_re = -0.7;
 	julia->c_im = 0.27015;
-	julia->iteration = 100;
+	julia->iteration = 50;
 	julia->type = 0;
 	return (julia);
 }
@@ -36,10 +36,10 @@ static t_frac	*init_mandelbrot(void)
 		ft_die("mandelbrot init failed.");
 	man->move.x = 0;
 	man->move.y = 0;
-	man->zoom = 1;
+	man->zoom = 100;
 	man->c_re = 0;
 	man->c_im = 0;
-	man->iteration = 100;
+	man->iteration = 50;
 	man->type = 1;
 	return (man);
 }
@@ -57,10 +57,14 @@ t_data			*init_main(int thread_number, int type)
 		ft_die("mlx init failed.");
 	data->width = 1000;
 	data->height = 1000;
+	data->f = NULL;
 	if (type == 0)
 		data->f = init_julia();
 	if (type == 1)
 		data->f = init_mandelbrot();
+	if (data->f == NULL)
+		ft_die("Fractal init failed.");
+	data->f->plocked = 0;
 	init_threads(data, thread_number);
 	return (data);
 }
