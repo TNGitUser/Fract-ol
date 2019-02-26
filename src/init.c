@@ -6,13 +6,13 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 11:45:46 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:53:43 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-static t_frac	*init_julia(void)
+t_frac			*init_julia(void)
 {
 	t_frac		*julia;
 
@@ -25,10 +25,11 @@ static t_frac	*init_julia(void)
 	julia->c_im = 0.27015;
 	julia->iteration = 50;
 	julia->type = 0;
+	julia->palette = color_palette(0x00ff00, 0xffffff, 50);
 	return (julia);
 }
 
-static t_frac	*init_mandelbrot(void)
+t_frac			*init_mandelbrot(void)
 {
 	t_frac		*man;
 
@@ -41,6 +42,7 @@ static t_frac	*init_mandelbrot(void)
 	man->c_im = 1;
 	man->iteration = 50;
 	man->type = 1;
+	man->palette = color_palette(0, 0xffffff, 50);
 	return (man);
 }
 

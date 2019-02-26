@@ -6,7 +6,7 @@
 /*   By: lucmarti <lucmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:53:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/22 11:01:39 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 13:31:50 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct		s_vector2
 
 typedef struct		s_dvector2
 {
-	double			x;
-	double			y;
+	long double		x;
+	long double		y;
 }					t_dvector2;
 
 typedef struct		s_vector3

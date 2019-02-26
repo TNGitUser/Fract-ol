@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 12:10:04 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:14:49 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef	struct	s_frac
 	t_vector2	move;
 	double		c_re;
 	double		c_im;
+	int			*palette;
 }				t_frac;
 
 typedef	struct	s_thr
@@ -63,6 +64,7 @@ typedef struct	s_data
 	void		*mlx;
 	void		*mlx_win;
 	void		*(*draw[2]) (void *);
+	t_frac		*(*init[2]) (void);
 	int			width;
 	int			height;
 	t_pos		*pos;
@@ -85,11 +87,14 @@ void			*man_start(void *vdata);
 /*
 **		init.c
 */
+t_frac			*init_julia(void);
+t_frac			*init_mandelbrot(void);
 t_data			*init_main(int thread_number, int type);
 
 /*
 **		handler.c
 */
+int				key_pressed(int keycode, void *param);
 int				key_handler(int keycode, void *param);
 int				mouse_handler(int button, int x, int y, void *param);
 int				mouse_move(int x, int y, void *param);
@@ -98,9 +103,11 @@ int				win_close(void *param);
 /*
 **		handler_aux.c
 */
+void			iter_update(int mod, t_data *data);
 void			move_update(int keycode, t_data *data);
 void			mouse_zoom(int keycode, int x, int y, t_data *data);
 void			reset(t_data *data);
+void			frac_manager(int type, t_data *data);
 
 /*
 **		utils.c
@@ -120,7 +127,8 @@ int				get_thread(t_data *data, pthread_t thr);
 **		pixel_color.c
 */
 void			pixel_color(t_data *data, t_vector2 *vec, int color);
-int				normalize_color(int i, int max_i, long double x, long double y);
+int				*color_palette(int c1, int c2, int step);
+int				normalize_color(int i, t_dvector2 *v, t_data *d);
 
 /*
 **		err.c

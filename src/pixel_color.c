@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:07:48 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 12:14:51 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:54:12 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,45 @@ void	pixel_color(t_data *data, t_vector2 *vec, int color)
 	data->image->img[vec->x * offset + 2 + vec->y * data->image->line_size] = b;
 }
 
-int		lerp(long double v0, long double v1, long double t)
+int		interpolate_color(int color1, int color2, float factor)
 {
-	return (1 - t) * v0 + t * v1;
+	int rgb1[3];
+	int rgb2[3];
+	int gcolor[3];
+
+	rgb1[0] = (color1 >> 16) & 0xFF;
+	rgb1[1] = (color1 >> 8) & 0xFF;
+	rgb1[2] = (color1) & 0xFF;
+	rgb2[0] = (color2 >> 16) & 0xFF;
+	rgb2[1] = (color2 >> 8) & 0xFF;
+	rgb2[2] = (color2) & 0xFF;
+	gcolor[0] = round(rgb1[0] + factor * (rgb2[0] - rgb1[0]));
+	gcolor[1] = round(rgb1[1] + factor * (rgb2[1] - rgb1[1]));
+	gcolor[2] = round(rgb1[2] + factor * (rgb2[2] - rgb1[2]));
+	return (gcolor[0] << 16) | (gcolor[1] << 8) | gcolor[0];
 }
 
-int		normalize_color(int i, int max_i, long double x, long double y)
+int		*color_palette(int c1, int c2, int step)
+{
+	int		*color_array;
+	int		i;
+	float	var;
+
+	if (step <= 0)
+		step = 100;
+	var = 1 / (step - 1);
+	if (!(color_array = malloc(sizeof(int) * step)))
+		ft_die("Color array init failed.");
+	i = 0;
+	while (i < step)
+	{
+		color_array[i] = interpolate_color(c1, c2, var * i);
+		++i;
+	}
+	return (color_array);
+}
+
+int		normalize_color(int i, t_dvector2 *v, t_data *d)
 {
 	int			color1;
 	int			color2;
@@ -51,13 +84,18 @@ int		normalize_color(int i, int max_i, long double x, long double y)
 	long double log_zn;
 
 	iteration = (long double)i;
-	if (i < max_i)
+	if (i < d->f->iteration)
 	{
-		log_zn = log(x * x + y * y) / 2;
+		log_zn = log(v->x * v->x + v->y * v->y) / 2;
 		nu = log(log_zn / log(2)) / log(2);
 		iteration = iteration + 1 - nu;
 	}
-	color1 = 0x0a2440 * (int)floor(iteration);
-	color2 = 0x0a2440 * (int)(floor(iteration) + 1);
-	return (lerp(color1, color2, iteration - (long long)iteration));
+	if (i != 0 && i < d->f->iteration)
+	{
+		color1 = d->f->palette[(int)floor(iteration)];
+		color2 = d->f->palette[(int)(floor(iteration) + 1)];
+		return (interpolate_color(color1, color2, iteration -
+					floor(iteration)));
+	}
+	return (0);
 }

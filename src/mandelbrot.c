@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:42:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 12:13:31 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 13:36:25 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	man_draw(long double c_r, long double c_i,
 	long double zi;
 	long double tmp;
 	int			i;
+	t_dvector2	vz;
 
 	c_r = v->x / data->f->zoom + data->pos->v1.x;
 	c_i = v->y / data->f->zoom + data->pos->v1.y;
@@ -44,7 +45,9 @@ static void	man_draw(long double c_r, long double c_i,
 		zi = 2 * tmp * zi + c_i;
 		++i;
 	}
-	color(i, data, v, normalize_color(i, data->f->iteration, zr, zi));
+	vz.x = zr;
+	vz.y = zi;
+	color(i, data, v, normalize_color(i, &vz, data));
 }
 
 static void	man_compute(long double xf_limit, long double yf_limit,
