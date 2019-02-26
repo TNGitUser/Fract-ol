@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 15:48:03 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 11:45:46 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static t_frac	*init_mandelbrot(void)
 	man->move.x = 0;
 	man->move.y = 0;
 	man->zoom = 100;
-	man->c_re = 0;
-	man->c_im = 0;
+	man->c_re = -0.5;
+	man->c_im = 1;
 	man->iteration = 50;
 	man->type = 1;
 	return (man);
@@ -52,11 +52,11 @@ t_data			*init_main(int thread_number, int type)
 	if (!(data = malloc(sizeof(t_data))))
 		ft_die("Init failed.");
 	if (!(data->mlx = mlx_init()))
-		ft_die("mlx init failed.");
-	if (!(data->mlx_win = mlx_new_window(data->mlx, 1000, 1000, "0")))
-		ft_die("mlx init failed.");
-	data->width = 1000;
-	data->height = 1000;
+		ft_die("Mlx init failed.");
+	if (!(data->mlx_win = mlx_new_window(data->mlx, 600, 600, "0")))
+		ft_die("Mlx new window failed.");
+	data->width = 600;
+	data->height = 600;
 	data->f = NULL;
 	if (type == 0)
 		data->f = init_julia();
@@ -65,6 +65,7 @@ t_data			*init_main(int thread_number, int type)
 	if (data->f == NULL)
 		ft_die("Fractal init failed.");
 	data->f->plocked = 0;
+	data->f->smooth = 0;
 	init_threads(data, thread_number);
 	return (data);
 }

@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 16:02:38 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 09:42:50 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int		main(int ac, char **av)
 		type = 1;
 	else
 		ft_die("usage: ./fractol [julia | mandelbrot] [-t num_of_thread]");
-	data = init_main(1, type);
+	data = init_main(20, type);
 	return (0);
 }

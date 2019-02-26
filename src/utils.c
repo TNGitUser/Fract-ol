@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 16:40:16 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 11:18:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ void	init_pos(t_data *data)
 		ft_die("Pos init failed.");
 	pos->v1.x = -2;
 	pos->v1.y = -2;
-	pos->v2.x = 3;
-	pos->v2.y = 3;
+	pos->v2.x = 4;
+	pos->v2.y = 4;
 	pos->vmouse.x = 0;
 	pos->vmouse.y = 0;
-	pos->h = 0;
 	data->pos = pos;
 	init_image(data);
 }
@@ -61,5 +60,5 @@ void	init_threads(t_data *data, int thread_number)
 void	init_farray(t_data *data)
 {
 	data->draw[0] = &julia_start;
-	data->draw[1] = &julia_start;
+	data->draw[1] = &man_start;
 }

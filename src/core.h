@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/25 16:23:38 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 12:10:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ typedef	struct	s_frac
 {
 	int			type;
 	int			plocked;
+	int			smooth;
 	int			iteration;
-	double		zoom;
+	long double	zoom;
 	t_vector2	move;
 	double		c_re;
 	double		c_im;
@@ -54,7 +55,6 @@ typedef	struct	s_pos
 {
 	t_dvector2	v1;
 	t_dvector2	v2;
-	int			h;
 	t_dvector2	vmouse;
 }				t_pos;
 
@@ -77,9 +77,10 @@ typedef struct	s_data
 void			init_draw(t_data *data);
 
 /*
-**		julia.c
+**		julia.c | mandelbrot.c
 */
 void			*julia_start(void *vdata);
+void			*man_start(void *vdata);
 
 /*
 **		init.c
@@ -119,6 +120,7 @@ int				get_thread(t_data *data, pthread_t thr);
 **		pixel_color.c
 */
 void			pixel_color(t_data *data, t_vector2 *vec, int color);
+int				normalize_color(int i, int max_i, long double x, long double y);
 
 /*
 **		err.c

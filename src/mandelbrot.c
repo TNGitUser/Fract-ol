@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 10:42:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 12:15:35 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/26 12:13:31 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	color(int i, t_data *data, t_vector2 *v, int color)
 	pixel_color(data, v, color);
 }
 
-static void	julia_draw(long double c_r, long double c_i,
+static void	man_draw(long double c_r, long double c_i,
 		t_vector2 *v, t_data *data)
 {
 	long double	zr;
@@ -32,20 +32,22 @@ static void	julia_draw(long double c_r, long double c_i,
 	long double tmp;
 	int			i;
 
-	zr = v->x / data->f->zoom + data->pos->v1.x;
-	zi = v->y / data->f->zoom + data->pos->v1.y;
+	c_r = v->x / data->f->zoom + data->pos->v1.x;
+	c_i = v->y / data->f->zoom + data->pos->v1.y;
+	zr = 0.0;
+	zi = 0.0;
 	i = 0;
 	while (i < data->f->iteration && zr * zr + zi * zi < 4)
 	{
-		tmp = zr * zr - zi * zi;
-		zi = 2 * zr * zi + c_i;
-		zr = tmp + c_r;
+		tmp = zr;
+		zr = zr * zr - zi * zi + c_r;
+		zi = 2 * tmp * zi + c_i;
 		++i;
 	}
 	color(i, data, v, normalize_color(i, data->f->iteration, zr, zi));
 }
 
-static void	julia_compute(long double xf_limit, long double yf_limit,
+static void	man_compute(long double xf_limit, long double yf_limit,
 		t_data *data)
 {
 	t_vector2	vec;
@@ -55,19 +57,20 @@ static void	julia_compute(long double xf_limit, long double yf_limit,
 	offset = data->width / data->threads->nth;
 	start = offset * get_thread(data, pthread_self());
 	vec.x = start - 1;
+	vec.x = vec.x > 0 ? vec.x : 0;
 	while (vec.x < xf_limit && vec.x < data->width && vec.x < start + offset)
 	{
 		vec.y = 0;
 		while (vec.y < yf_limit && vec.y < data->height)
 		{
-			julia_draw(data->f->c_re, data->f->c_im, &vec, data);
+			man_draw(data->f->c_re, data->f->c_im, &vec, data);
 			++(vec.y);
 		}
 		++(vec.x);
 	}
 }
 
-void		*julia_start(void *vdata)
+void		*man_start(void *vdata)
 {
 	long double img_x;
 	long double img_y;
@@ -76,7 +79,7 @@ void		*julia_start(void *vdata)
 	data = (t_data *)vdata;
 	img_x = (data->pos->v2.x - data->pos->v1.x) * data->f->zoom;
 	img_y = (data->pos->v2.y - data->pos->v1.y) * data->f->zoom;
-	julia_compute(img_x, img_y, data);
+	man_compute(img_x, img_y, data);
 	pthread_exit(NULL);
 	return (NULL);
 }
