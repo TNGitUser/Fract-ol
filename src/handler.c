@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 11:01:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 17:02:03 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 11:43:23 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			key_pressed(int keycode, void *param)
 	t_data *data;
 
 	data = (t_data *)param;
-	if (keycode >= 18 && keycode <= 19)
+	if (keycode >= 18 && keycode <= 21)
 		frac_manager(keycode % 18, data);
 	mlx_destroy_image(data->mlx, data->image->ptr);
 	data->image->ptr = mlx_new_image(data->mlx, data->width, data->height);
@@ -44,8 +44,8 @@ int			key_handler(int keycode, void *param)
 		move_update(keycode, data);
 	if (keycode == 15)
 		reset(data);
-	printf("V1 : (%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
-	printf("zoom : %Lf\n", data->f->zoom);
+	//printf("V1 : (%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
+	//printf("zoom : %Lf\n", data->f->zoom);
 	mlx_destroy_image(data->mlx, data->image->ptr);
 	data->image->ptr = mlx_new_image(data->mlx, data->width, data->height);
 	start_dthreads(data);
@@ -59,22 +59,20 @@ int			mouse_handler(int button, int x, int y, void *param)
 	t_data *data;
 
 	data = (t_data *)param;
-	printf("button : %i\n", button);
 	if (button == 4 || button == 5 || button == 1 || button == 2)
 	{
-		printf("Current v1 : (%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
-		printf("Mouse : (%i,%i)\n", x, y);
+		//printf("Current v1 : (%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
+		//printf("Mouse : (%i,%i)\n", x, y);
 		xi = ((float)y / data->width) * ft_abs(data->pos->v1.y) + data->pos->v1.y;
 		xr = ((float)x / data->width) * ft_abs(data->pos->v1.x) + data->pos->v1.x;
-		printf("Current v1 : (%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
-		printf("Mouse : (%i,%i)\n", x, y);
-		data->pos->v1.x = xr;
+		//printf("New v1 : (%f,%f)\n", xi, xr);
+		/*data->pos->v1.x = xr;
 		data->pos->v1.y = xi;
 		printf("New v1 : (%f,%f)\n", xr, xi);
 		if (button == 5 || button == 1)
 			data->f->zoom *= 2;
 		if (button == 4 || button == 2)
-			data->f->zoom *= 0.5;
+			data->f->zoom *= 0.5;*/
 	}
 	mlx_destroy_image(data->mlx, data->image->ptr);
 	data->image->ptr = mlx_new_image(data->mlx, data->width, data->height);

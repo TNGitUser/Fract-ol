@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 15:19:37 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 11:32:50 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	init_threads(t_data *data, int thread_number)
 	if (!(threads->workers = malloc(sizeof(pthread_t) * thread_number)))
 		ft_die("Workers init failed.");
 	data->threads = threads;
-	init_farray(data);
 	init_pos(data);
 }
 
@@ -61,7 +60,11 @@ void	init_farray(t_data *data)
 {
 	data->draw[0] = &julia_start;
 	data->draw[1] = &man_start;
+	data->draw[2] = &tri_start;
+	data->draw[3] = &burn_start;
 	
 	data->init[0] = &init_julia;
 	data->init[1] = &init_mandelbrot;
+	data->init[2] = &init_tri;
+	data->init[3] = &init_burn;
 }

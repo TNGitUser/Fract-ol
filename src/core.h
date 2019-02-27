@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 14:14:49 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 11:33:19 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct	s_data
 {
 	void		*mlx;
 	void		*mlx_win;
-	void		*(*draw[2]) (void *);
-	t_frac		*(*init[2]) (void);
+	void		*(*draw[4]) (void *);
+	t_frac		*(*init[4]) (void);
 	int			width;
 	int			height;
 	t_pos		*pos;
@@ -83,12 +83,16 @@ void			init_draw(t_data *data);
 */
 void			*julia_start(void *vdata);
 void			*man_start(void *vdata);
+void			*tri_start(void *vdata);
+void			*burn_start(void *vdata);
 
 /*
 **		init.c
 */
 t_frac			*init_julia(void);
 t_frac			*init_mandelbrot(void);
+t_frac			*init_tri(void);
+t_frac			*init_burn(void);
 t_data			*init_main(int thread_number, int type);
 
 /*

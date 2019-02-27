@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:49:33 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/26 16:26:46 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 11:41:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	iter_update(int mod, t_data *data)
 		data->f->iteration += mod;
 	data->f->iteration = data->f->iteration <= 0 ? 1 : data->f->iteration;
 	ft_memdel((void **)&(data->f->palette));
-	data->f->palette = color_palette(0, 0x0a2440, data->f->iteration);
+	data->f->palette = color_palette(0x0a2440, 0x000000, data->f->iteration);
 }
 
 void	move_update(int keycode, t_data *data)

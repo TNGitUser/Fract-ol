@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/26 10:46:26 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/27 11:33:36 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ TARGET = fractol
 
 SRC := ./src/main.c ./src/init.c ./src/handler.c ./src/err.c ./src/julia.c\
 	./src/utils.c ./src/pixel_color.c ./src/threads.c ./src/handler_aux.c \
-	./src/mandelbrot.c
+	./src/mandelbrot.c ./src/tricorn.c ./src/burningship.c
 
 OBJ = $(SRC:.c=.o)
 LIB =	./libft.a ./libmlx.a
 
-CFLAGS = -Wall -Wextra -Werror
-DEB = -O3 #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra #-Werror
+DEB = #-O3 -g3 -fsanitize=address
 LIBFLAGS = -framework OpenGL -framework AppKit -lm -lpthread
 
 ifndef VERBOSE
