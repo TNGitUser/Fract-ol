@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:07:48 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 09:50:56 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 12:21:53 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,30 @@ int		*color_palette(int c1, int c2, int step)
 	int		*color_array;
 	int		i;
 	float	var;
+	int		cycle;
+	int		icycle;
 
-	if (step <= 0)
+	if (step <= 50)
 		step = 100;
-	var = 1 / (step - 1);
-	if (!(color_array = malloc(sizeof(int) * step)))
+	cycle = 100;
+	if (cycle <= 50)
+		cycle = 10;
+	var = 1.0 / ((float)step - 1);
+	if (!(color_array = malloc(sizeof(int) * (step * cycle))))
 		ft_die("Color array init failed.");
 	i = 0;
-	while (i < step)
+	printf("step : %d\n", step);
+	printf("var : %f\n", var);
+	printf("Color palette :\n");
+	while (i < (step))
 	{
-		color_array[i] = interpolate_color(c1, c2, var * i);
-		++i;
+		/*icycle = 0;
+		while (icycle < cycle && i < (step * cycle))
+		{*/
+			color_array[i] = interpolate_color(c1, c2, var * i);
+			printf("Color[%i] = %i\n", i, color_array[i]);
+			++i;
+		//}
 	}
 	return (color_array);
 }
@@ -84,18 +97,16 @@ int		normalize_color(int i, t_dvector2 *v, t_data *d)
 	long double log_zn;
 
 	iteration = (long double)i;
+	if (i == d->f->iteration)
+		return (0);
 	if (i < d->f->iteration)
 	{
 		log_zn = log(v->x * v->x + v->y * v->y) / 2;
 		nu = log(log_zn / log(2)) / log(2);
 		iteration = iteration + 1 - nu;
 	}
-	if (i < d->f->iteration)
-	{
-		color1 = d->f->palette[(int)floor(iteration)];
-		color2 = d->f->palette[(int)(floor(iteration) + 1)];
-		return (interpolate_color(color1, color2, iteration -
-					floor(iteration)));
-	}
-	return (0);
+	color1 = d->f->palette[(int)floor(iteration)];
+	color2 = d->f->palette[(int)(floor(iteration) + 1)];
+	return (interpolate_color(color1, color2, iteration -
+				floor(iteration)));
 }

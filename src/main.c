@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 09:57:47 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 12:04:31 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ int		main(int ac, char **av)
 		type = 1;
 	else if (ft_strcmp("tricorn", av[1]) == 0)
 		type = 2;
+	else if (ft_strcmp("burningship", av[1]) == 0)
+		type = 3;
 	else
-		ft_die("usage: ./fractol [julia | mandelbrot | tricorn] \
-				[-t num_of_thread]");
+		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship] \
+[-t num_of_thread]");
 	data = init_main(20, type);
 	return (0);
 }
