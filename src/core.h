@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 11:33:19 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:30:16 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,27 @@
 # include <pthread.h>
 
 # include <stdio.h>
+# include <unistd.h>
+
+# define OUTER_COLOR0 0xeecda3
+# define INTER_COLOR0 0xef629f
+
+# define OUTER_COLOR1 0xa8ff78
+# define INTER_COLOR1 0x78ffd6
+
+# define OUTER_COLOR2 0x000428
+# define INTER_COLOR2 0x004e92
+
+# define SingleColor0 0xeecda3
+# define SingleColor1 0xef629f
+# define SingleColor2 0xfd746c
 
 typedef	struct	s_frac
 {
 	int			type;
 	int			plocked;
 	int			smooth;
+	int			cs;
 	int			iteration;
 	long double	zoom;
 	t_vector2	move;
@@ -67,6 +82,7 @@ typedef struct	s_data
 	t_frac		*(*init[4]) (void);
 	int			width;
 	int			height;
+	int			ea;
 	t_pos		*pos;
 	t_image		*image;
 	t_thr		*threads;
@@ -109,13 +125,14 @@ int				win_close(void *param);
 */
 void			iter_update(int mod, t_data *data);
 void			move_update(int keycode, t_data *data);
-void			mouse_zoom(int keycode, int x, int y, t_data *data);
+void			color_manager(int nt, t_data *data);
 void			reset(t_data *data);
 void			frac_manager(int type, t_data *data);
 
 /*
 **		utils.c
 */
+void			init_palette(t_data *data);
 void			init_image(t_data *data);
 void			init_pos(t_data *data);
 void			init_threads(t_data *data, int thread_number);
@@ -131,8 +148,14 @@ int				get_thread(t_data *data, pthread_t thr);
 **		pixel_color.c
 */
 void			pixel_color(t_data *data, t_vector2 *vec, int color);
+int				get_scolor(t_data *data);
 int				*color_palette(int c1, int c2, int step);
 int				normalize_color(int i, t_dvector2 *v, t_data *d);
+
+/*
+**		bonus.c
+*/
+int				enable_animation(t_data *data, float start, float end);
 
 /*
 **		err.c

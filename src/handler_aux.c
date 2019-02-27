@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:49:33 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 12:13:22 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:35:45 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	iter_update(int mod, t_data *data)
 	else
 		data->f->iteration += mod;
 	data->f->iteration = data->f->iteration <= 0 ? 1 : data->f->iteration;
-	ft_memdel((void **)&(data->f->palette));
-	data->f->palette = color_palette(0xEECDA3, 0xef629f, data->f->iteration);
 }
 
 void	move_update(int keycode, t_data *data)
@@ -37,18 +35,17 @@ void	move_update(int keycode, t_data *data)
 
 void	reset(t_data *data)
 {
+	data->ea = 0;
 	data->f->zoom = 100;
 	data->f->iteration = 50;
 	data->pos->v1.x = -2.92;
 	data->pos->v1.y = -2.92;
 }
 
-void	mouse_zoom(int keycode, int x, int y, t_data *data)
+void	color_manager(int nt, t_data *data)
 {
-	(void)keycode;
-	(void)x;
-	(void)y;
-	(void)data;
+	if (nt != data->f->cs)
+		data->f->cs = nt;
 }
 
 void	frac_manager(int type, t_data *data)
