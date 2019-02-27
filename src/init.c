@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 15:30:26 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:02:06 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_data			*init_main(int thread_number, int type)
 	data->f->plocked = 0;
 	data->f->smooth = 0;
 	data->ea = 0;
+	data->z = 0;
 	init_threads(data, thread_number);
 	return (data);
 }

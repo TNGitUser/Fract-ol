@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 15:30:16 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 16:58:35 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@
 # define OUTER_COLOR2 0x000428
 # define INTER_COLOR2 0x004e92
 
-# define SingleColor0 0xeecda3
-# define SingleColor1 0xef629f
-# define SingleColor2 0xfd746c
+# define SINGLECOLOR0 0xeecda3
+# define SINGLECOLOR1 0xef629f
+# define SINGLECOLOR2 0xfd746c
 
 typedef	struct	s_frac
 {
@@ -69,6 +69,7 @@ typedef struct	s_image
 
 typedef	struct	s_pos
 {
+	t_dvector2	origin;
 	t_dvector2	v1;
 	t_dvector2	v2;
 	t_dvector2	vmouse;
@@ -82,6 +83,7 @@ typedef struct	s_data
 	t_frac		*(*init[4]) (void);
 	int			width;
 	int			height;
+	int			z;
 	int			ea;
 	t_pos		*pos;
 	t_image		*image;
@@ -156,6 +158,7 @@ int				normalize_color(int i, t_dvector2 *v, t_data *d);
 **		bonus.c
 */
 int				enable_animation(t_data *data, float start, float end);
+void			zoom_manager(int keycode, t_data *data);
 
 /*
 **		err.c

@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 13:55:22 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 16:58:12 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	init_pos(t_data *data)
 
 	if (!(pos = malloc(sizeof(t_pos))))
 		ft_die("Pos init failed.");
+	pos->origin.x = -2.92;
+	pos->origin.y = -2.92;
 	pos->v1.x = -2.92;
 	pos->v1.y = -2.92;
 	pos->v2.x = 4;
@@ -72,7 +74,6 @@ void	init_farray(t_data *data)
 	data->draw[1] = &man_start;
 	data->draw[2] = &tri_start;
 	data->draw[3] = &burn_start;
-	
 	data->init[0] = &init_julia;
 	data->init[1] = &init_mandelbrot;
 	data->init[2] = &init_tri;

@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:49:33 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 15:35:45 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:02:14 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ void	move_update(int keycode, t_data *data)
 		data->pos->v1.y = keycode == 126 ? data->pos->v1.y + \
 						(0.1 / (data->f->zoom / 1000)) : \
 						data->pos->v1.y - (0.1 / (data->f->zoom / 1000));
+	printf("(%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
 }
 
 void	reset(t_data *data)
 {
 	data->ea = 0;
+	data->z = 0;
 	data->f->zoom = 100;
 	data->f->iteration = 50;
-	data->pos->v1.x = -2.92;
-	data->pos->v1.y = -2.92;
+	data->pos->v1.x = data->pos->origin.x;
+	data->pos->v1.y = data->pos->origin.y;
 }
 
 void	color_manager(int nt, t_data *data)

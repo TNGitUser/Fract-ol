@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:07:48 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 14:03:07 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 15:52:46 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ int		get_scolor(t_data *data)
 	if (!data->f->smooth)
 	{
 		if (data->f->cs == 1)
-			return (SingleColor1);
+			return (SINGLECOLOR1);
 		else if (data->f->cs == 2)
-			return (SingleColor2);
+			return (SINGLECOLOR2);
 		else
-			return (SingleColor0);
+			return (SINGLECOLOR0);
 	}
 	else
 	{
@@ -91,8 +91,8 @@ int		*color_palette(int c1, int c2, int step)
 	i = 0;
 	while (i < (step))
 	{
-			color_array[i] = interpolate_color(c1, c2, var * i);
-			++i;
+		color_array[i] = interpolate_color(c1, c2, var * i);
+		++i;
 	}
 	return (color_array);
 }

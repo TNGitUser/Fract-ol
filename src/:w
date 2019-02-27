@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:49:45 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 17:05:57 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/27 17:03:38 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	zoom_manager(int keycode, t_data *data)
 {
 	double z;
 
-	if (data->z + (keycode == 69 ? 1 : - 1) > -1)
+	if (data->z + (keycode == 69 ? 1 : - 1) >= 0)
 	{
 		z = keycode == 69 ? 2 : 0.5;
 		data->f->zoom *= z;
@@ -54,8 +54,8 @@ void	zoom_manager(int keycode, t_data *data)
 		}
 		else
 		{
-			data->pos->v1.x = data->pos->origin.x / (ft_power(2, data->z));
-			data->pos->v1.y = data->pos->origin.y / (ft_power(2 ,data->z));
+			data->pos->v1.x = data->pos->origin.x / (2 * (data->z));
+			data->pos->v1.y = data->pos->origin.y / (2 * (data->z));
 		}
 	}
 	printf("Current v1 : (%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
