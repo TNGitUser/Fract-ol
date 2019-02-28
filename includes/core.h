@@ -6,15 +6,15 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 13:33:04 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:29:51 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CORE_H
 # define CORE_H
 
-# include "../minilibx/mlx.h"
-# include "../libft/libft.h"
+# include "mlx.h"
+# include "libft.h"
 
 # include <stdlib.h>
 # include <fcntl.h>

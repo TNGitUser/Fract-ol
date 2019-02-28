@@ -6,7 +6,7 @@
 #    By: lucmarti <lucmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 15:37:09 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/20 14:22:34 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/28 14:38:38 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,9 +115,8 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "${_CYAN}Compilation done${_END}"
 	@ar -rc $(NAME) $(OBJ) libft.h
-	@echo "${_GREEN}Library created${_END}"
+	@echo "Compilation of $(_CYAN)libft$(_END)   :    $(_GREEN)Done${_END}"
 	@ranlib $(NAME)
 
 %.o: %.c libft.h
@@ -126,10 +125,8 @@ $(NAME): $(OBJ)
 clean:
 	@rm -f $(OBJ)
 	@rm -f *.o
-	@echo "${_RED}Objects cleaned${_END}"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "${_RED}Output deleted${_END}"
 
 re: fclean all
