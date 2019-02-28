@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:07:48 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 15:52:46 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:45:34 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		normalize_color(int i, t_dvector2 *v, t_data *d)
 
 	iteration = (long double)i;
 	if (i == d->f->iteration)
-		return (get_scolor(d));
+		return 0;//(get_scolor(d));
 	if (i < d->f->iteration)
 	{
 		log_zn = log(v->x * v->x + v->y * v->y) / 2;

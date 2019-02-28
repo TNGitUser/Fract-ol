@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 16:58:12 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 11:11:34 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	init_pos(t_data *data)
 
 	if (!(pos = malloc(sizeof(t_pos))))
 		ft_die("Pos init failed.");
-	pos->origin.x = -2.92;
-	pos->origin.y = -2.92;
-	pos->v1.x = -2.92;
-	pos->v1.y = -2.92;
-	pos->v2.x = 4;
-	pos->v2.y = 4;
+	pos->origin.x = -2.99;
+	pos->origin.y = -2.99;
+	pos->v1.x = -3;
+	pos->v1.y = -3;
+	pos->v2.x = 3;
+	pos->v2.y = 3;
 	pos->vmouse.x = 0;
 	pos->vmouse.y = 0;
 	data->pos = pos;

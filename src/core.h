@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/27 16:58:35 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 12:08:14 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef	struct	s_frac
 	int			cs;
 	int			iteration;
 	long double	zoom;
-	t_vector2	move;
+	t_dvector2	move;
 	double		c_re;
 	double		c_im;
 	int			*palette;
@@ -159,6 +159,7 @@ int				normalize_color(int i, t_dvector2 *v, t_data *d);
 */
 int				enable_animation(t_data *data, float start, float end);
 void			zoom_manager(int keycode, t_data *data);
+t_dvector2		get_center(t_data *data, int z);
 
 /*
 **		err.c
