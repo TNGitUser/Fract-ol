@@ -6,13 +6,13 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:49:45 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 15:55:16 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:13:36 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-int		enable_animation(t_data *data, float start, float end)
+int			enable_animation(t_data *data, float start, float end)
 {
 	float os;
 
@@ -39,7 +39,7 @@ int		enable_animation(t_data *data, float start, float end)
 	return (0);
 }
 
-void	zoom_manager(int keycode, t_data *data)
+void		zoom_manager(int keycode, t_data *data)
 {
 	double z;
 
@@ -55,7 +55,7 @@ void	zoom_manager(int keycode, t_data *data)
 	}
 }
 
-void	mzoom_manager(int button, int x, int y, t_data *data)
+void		mzoom_manager(int button, int x, int y, t_data *data)
 {
 	double z;
 
@@ -74,7 +74,7 @@ void	mzoom_manager(int button, int x, int y, t_data *data)
 	}
 }
 
-void	show_indicator(t_data *data)
+static void	show_indicator(t_data *data)
 {
 	char *msg;
 
@@ -100,7 +100,7 @@ void	show_indicator(t_data *data)
 	ft_memdel((void **)&msg);
 }
 
-void	show_help(t_data *data)
+void		show_help(t_data *data)
 {
 	if (data->ind == 1)
 	{
@@ -113,13 +113,15 @@ void	show_help(t_data *data)
 		mlx_string_put(data->mlx, data->mlx_win,
 				10, 70, 0xFFFFFF, "Colors           : '[(Numpad)1|2|3|4]'");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 90, 0xFFFFFF, "Move      : arrow keys");
+				10, 90, 0xFFFFFF, "Move             : arrow keys");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 110, 0xFFFFFF, "Reset    : 'r'");
+				10, 110, 0xFFFFFF, "Reset            : 'r'");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 130, 0xFFFFFF, "Smooth   : 's'");
+				10, 130, 0xFFFFFF, "Help             : 'h'");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 150, 0xFFFFFF, "Quit   : 'Esc'");
+				10, 150, 0xFFFFFF, "Smooth           : 's'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 170, 0xFFFFFF, "Quit             : 'Esc'");
 	}
 	show_indicator(data);
 }

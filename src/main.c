@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 16:02:21 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:14:50 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	init_draw(t_data *data)
 					, &(img->endian))))
 		ft_die("Image retrieving failed.");
 	start_dthreads(data);
+	show_help(data);
 	mlx_key_hook(data->mlx_win, key_pressed, data);
 	mlx_hook(data->mlx_win, 2, 0, key_handler, data);
 	mlx_hook(data->mlx_win, 4, 0, mouse_handler, data);
 	mlx_hook(data->mlx_win, 6, 0, mouse_move, data);
+	mlx_hook(data->mlx_win, 17, 0, win_close, data);
 	mlx_loop(data->mlx);
 }
 
