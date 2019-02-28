@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 14:07:48 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 11:45:34 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 13:22:58 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int		get_scolor(t_data *data)
 			return (SINGLECOLOR1);
 		else if (data->f->cs == 2)
 			return (SINGLECOLOR2);
+		else if (data->f->cs == 3)
+			return (SINGLECOLOR3);
 		else
 			return (SINGLECOLOR0);
 	}
@@ -72,6 +74,8 @@ int		get_scolor(t_data *data)
 			return (INTER_COLOR1);
 		else if (data->f->cs == 2)
 			return (INTER_COLOR2);
+		else if (data->f->cs == 3)
+			return (INTER_COLOR3);
 		else
 			return (INTER_COLOR0);
 	}
@@ -84,7 +88,6 @@ int		*color_palette(int c1, int c2, int step)
 	int		i;
 	float	var;
 
-	step = 50;
 	var = 1.0 / ((float)step - 1);
 	if (!(color_array = malloc(sizeof(int) * step)))
 		ft_die("Color array init failed.");
@@ -107,15 +110,15 @@ int		normalize_color(int i, t_dvector2 *v, t_data *d)
 
 	iteration = (long double)i;
 	if (i == d->f->iteration)
-		return 0;//(get_scolor(d));
-	if (i < d->f->iteration)
+		return 0;
+	if (i != d->f->iteration)
 	{
 		log_zn = log(v->x * v->x + v->y * v->y) / 2;
 		nu = log(log_zn / log(2)) / log(2);
 		iteration = iteration + 1 - nu;
 	}
-	color1 = d->f->palette[((int)floor(iteration)) % 50];
-	color2 = d->f->palette[((int)(floor(iteration) + 1)) % 50];
+	color1 = d->f->palette[((int)floor(iteration)) % COLOR_CYCLE];
+	color2 = d->f->palette[((int)(floor(iteration) + 1)) % COLOR_CYCLE];
 	return (interpolate_color(color1, color2, iteration -
 				floor(iteration)));
 }

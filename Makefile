@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/28 11:57:59 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/28 14:22:13 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,21 @@ End=\x1b[0m
 
 TARGET = fractol
 
-SRC := ./src/main.c ./src/init.c ./src/handler.c ./src/err.c ./src/julia.c	\
-	./src/utils.c ./src/pixel_color.c ./src/threads.c ./src/handler_aux.c 	\
-	./src/mandelbrot.c ./src/tricorn.c ./src/burningship.c ./src/bonus.c	
-OBJ = $(SRC:.c=.o)
+SRC_PATH = ./src
+SRC_FILE := main.c init.c handler.c err.c julia. mandelbrot.c threads.c utils.c
+SRC_FILE += pixel_color.c handler_aux.c tricorn.c burningship.c bonus.c
+
+OBJ_PATH = ./objs
+OBJ_FILE = $(SRC_FILE:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH)/,$($(SRC_FILE)))	
+OBJ = $(addprefix $(OBJ_PATH)/,$($(OBJ_FILE)))	
 LIB =	./libft.a ./libmlx.a
 
 CFLAGS = -Wall -Wextra -Werror
-DEB = -O3
+CPPFLAGS = -I includes -I libft/ -I minilibx/
+
+OPT = -O3 -funsafe-math-optimizations
 LIBFLAGS = -framework OpenGL -framework AppKit -lm -lpthread
 
 ifndef VERBOSE
@@ -32,11 +39,12 @@ endif
 all: $(TARGET)
 
 $(TARGET): $(OBJ) libft libmlx 
-	@gcc $(CFLAGS) $(LIBFLAGS) $(DEB) -o $(TARGET) $(OBJ) $(LIB)
-	@echo "${Green}fractol compiled${End}"
+	@gcc $(CFLAGS) $(LIBFLAGS) $(OPT) -o $(TARGET) $(OBJ) $(LIB)
+	@echo "Compilation of fractol :    ${Green}Done${End}"
 
-%.o: %.c ./libft.h ./minilibx/mlx.h
-	@gcc $(CFLAGS) $(LIBFLAGS) $(DEB) -o $@ -c $<
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@gcc $(CFLAGS) $(LIBFLAGS) $(OPT) -c $< $(CPPFLAGS) -o $@
 
 .PHONY: libft libmlx clean fclean re
 

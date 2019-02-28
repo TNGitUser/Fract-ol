@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 12:08:14 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 13:33:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,21 @@
 # define OUTER_COLOR0 0xeecda3
 # define INTER_COLOR0 0xef629f
 
-# define OUTER_COLOR1 0xa8ff78
-# define INTER_COLOR1 0x78ffd6
+# define OUTER_COLOR1 0x20002c
+# define INTER_COLOR1 0xcbb4d4
 
 # define OUTER_COLOR2 0x000428
 # define INTER_COLOR2 0x004e92
 
+# define OUTER_COLOR3 0x16222a
+# define INTER_COLOR3 0x3a6073
+
 # define SINGLECOLOR0 0xeecda3
 # define SINGLECOLOR1 0xef629f
 # define SINGLECOLOR2 0xfd746c
+# define SINGLECOLOR3 0xdbd65c
+
+# define COLOR_CYCLE 100
 
 typedef	struct	s_frac
 {
@@ -159,7 +165,7 @@ int				normalize_color(int i, t_dvector2 *v, t_data *d);
 */
 int				enable_animation(t_data *data, float start, float end);
 void			zoom_manager(int keycode, t_data *data);
-t_dvector2		get_center(t_data *data, int z);
+void			mzoom_manager(int button, int x, int y, t_data *data);
 
 /*
 **		err.c

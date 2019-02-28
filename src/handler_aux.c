@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:49:33 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 12:19:41 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 13:11:23 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ void	reset(t_data *data)
 void	color_manager(int nt, t_data *data)
 {
 	if (nt != data->f->cs)
+	{
 		data->f->cs = nt;
+		ft_memdel((void **)&data->f->palette);
+		init_palette(data);
+	}
 }
 
 void	frac_manager(int type, t_data *data)

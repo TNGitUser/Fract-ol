@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 11:11:34 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 13:24:14 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,17 @@
 void	init_palette(t_data *data)
 {
 	if (data->f->cs == 1)
-		data->f->palette = color_palette(OUTER_COLOR1, INTER_COLOR1, 50);
+		data->f->palette = color_palette(OUTER_COLOR1, INTER_COLOR1,\
+				COLOR_CYCLE);
 	else if (data->f->cs == 2)
-		data->f->palette = color_palette(OUTER_COLOR2, INTER_COLOR2, 50);
+		data->f->palette = color_palette(OUTER_COLOR2, INTER_COLOR2,\
+				COLOR_CYCLE);
+	else if (data->f->cs == 3)
+		data->f->palette = color_palette(OUTER_COLOR3, INTER_COLOR3,\
+				COLOR_CYCLE);
 	else
-		data->f->palette = color_palette(OUTER_COLOR0, INTER_COLOR0, 50);
+		data->f->palette = color_palette(OUTER_COLOR0, INTER_COLOR0,\
+				COLOR_CYCLE);
 }
 
 void	init_image(t_data *data)
