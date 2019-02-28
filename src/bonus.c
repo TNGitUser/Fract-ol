@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:49:45 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 13:07:51 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:30:40 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		enable_animation(t_data *data, float start, float end)
 {
 	float os;
 
+	data->f->plocked = 1;
 	os = start;
 	if (data->f->type == 0 && data->ea == 0)
 	{
@@ -44,7 +45,7 @@ void	zoom_manager(int keycode, t_data *data)
 
 	if (data->z + (keycode == 69 ? 1 : -1) > -1)
 	{
-		z = keycode == 69 ? 1.2 : 1./1.2;
+		z = keycode == 69 ? 1.2 : 1. / 1.2;
 		data->pos->v1.x = (300 / data->f->zoom + data->pos->v1.x) - (300 /\
 				(data->f->zoom * z));
 		data->pos->v1.y = (300 / data->f->zoom + data->pos->v1.y) - (300 /\
@@ -71,4 +72,48 @@ void	mzoom_manager(int button, int x, int y, t_data *data)
 		data->f->zoom *= z;
 		data->z += (z > 1 ? 1 : -1);
 	}
+}
+
+void	show_indicator(t_data *data)
+{
+	char *msg;
+
+	if (data->ind != 2)
+		return ;
+	msg = ft_itoa(data->z);
+	mlx_string_put(data->mlx, data->mlx_win,
+			10, 540, 0xFFFFFF, "Zoom      : ");
+	mlx_string_put(data->mlx, data->mlx_win,
+			130, 540, 0xFFFFFF, msg);
+	ft_memdel((void **)&msg);
+	msg = ft_itoa(data->f->iteration);
+	mlx_string_put(data->mlx, data->mlx_win,
+			10, 560, 0xFFFFFF, "Iteration : ");
+	mlx_string_put(data->mlx, data->mlx_win,
+			130, 560, 0xFFFFFF, msg);
+	ft_memdel((void **)&msg);
+}
+
+void	show_help(t_data *data)
+{
+	if (data->ind == 1)
+	{
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 10, 0xFFFFFF, "Zoom             : '+' and '-'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 30, 0xFFFFFF, "Iteration        : '_' and '='");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 50, 0xFFFFFF, "Julia animation  : 'p'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 70, 0xFFFFFF, "Colors           : '[(Numpad)1|2|3|4]'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 90, 0xFFFFFF, "Move      : arrow keys");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 110, 0xFFFFFF, "Reset    : 'r'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 130, 0xFFFFFF, "Smooth   : 's'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 150, 0xFFFFFF, "Quit   : 'Esc'");
+	}
+	show_indicator(data);
 }

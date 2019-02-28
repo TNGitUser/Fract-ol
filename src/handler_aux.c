@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:49:33 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 13:11:23 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 14:59:07 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ void	move_update(int keycode, t_data *data)
 		data->pos->v1.x = keycode == 123 ? data->pos->v1.x + \
 						(0.1 / (data->f->zoom / 1000)) : \
 						data->pos->v1.x - (0.1 / (data->f->zoom / 1000));
-		data->f->move.x += keycode == 123 ? (0.1 / (data->f->zoom / 1000)) : \
-						-(0.1 / (data->f->zoom / 1000));
 	}
 	else if (keycode == 125 || keycode == 126)
 	{
 		data->pos->v1.y = keycode == 126 ? data->pos->v1.y + \
 						(0.1 / (data->f->zoom / 1000)) : \
 						data->pos->v1.y - (0.1 / (data->f->zoom / 1000));
-		data->f->move.y += keycode == 123 ? (0.1 / (data->f->zoom / 1000)) : \
-						-(0.1 / (data->f->zoom / 1000));
 	}
-	printf("(%Lf,%Lf)\n", data->pos->v1.x, data->pos->v1.y);
-	printf("f : (%Lf,%Lf)\n", data->f->move.x, data->f->move.y);
 }
 
 void	reset(t_data *data)
@@ -51,8 +45,6 @@ void	reset(t_data *data)
 	data->f->iteration = 50;
 	data->pos->v1.x = data->pos->origin.x;
 	data->pos->v1.y = data->pos->origin.y;
-	data->f->move.x = 0;
-	data->f->move.y = 0;
 }
 
 void	color_manager(int nt, t_data *data)

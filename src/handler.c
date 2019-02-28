@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 11:01:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 13:23:56 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:28:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ int			key_pressed(int keycode, void *param)
 		data->f->plocked = !data->f->plocked;
 	else if (keycode == 15)
 		reset(data);
+	if (keycode == 4)
+		data->ind = data->ind == 0 ? 1 : 0;
+	else if (keycode == 34)
+		data->ind = data->ind != 2 ? 2 : 0;
 	mlx_destroy_image(data->mlx, data->image->ptr);
 	data->image->ptr = mlx_new_image(data->mlx, data->width, data->height);
 	start_dthreads(data);
+	show_help(data);
 	return (0);
 }
 
@@ -40,7 +45,6 @@ int			key_handler(int keycode, void *param)
 		color_manager(keycode % 83, data);
 	else if (keycode == 0)
 	{
-		data->f->plocked = 1;
 		enable_animation(data, -4, 4);
 		return (0);
 	}
@@ -55,6 +59,7 @@ int			key_handler(int keycode, void *param)
 	mlx_destroy_image(data->mlx, data->image->ptr);
 	data->image->ptr = mlx_new_image(data->mlx, data->width, data->height);
 	start_dthreads(data);
+	show_help(data);
 	return (0);
 }
 
@@ -68,6 +73,7 @@ int			mouse_handler(int button, int x, int y, void *param)
 	mlx_destroy_image(data->mlx, data->image->ptr);
 	data->image->ptr = mlx_new_image(data->mlx, data->width, data->height);
 	start_dthreads(data);
+	show_help(data);
 	return (0);
 }
 
@@ -84,6 +90,7 @@ int			mouse_move(int x, int y, void *param)
 		data->image->ptr = mlx_new_image(data->mlx, data->width,
 				data->height);
 		start_dthreads(data);
+		show_help(data);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: lucmarti <lucmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 15:37:09 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/28 14:38:38 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/28 15:18:01 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,8 +92,6 @@ SRC +=	./ft_power.c
 SRC +=	./ft_abs.c
 SRC +=	./ft_iscinstr.c
 SRC +=	./ft_strfchr.c
-SRC +=	./ft_ltoa.c
-SRC +=	./ft_ftoa.c
 
 # This is a minimal set of ANSI/VT100 color codes
 _END=\x1b[0m
