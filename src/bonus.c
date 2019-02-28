@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:49:45 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 15:30:40 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:55:16 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void	show_indicator(t_data *data)
 
 	if (data->ind != 2)
 		return ;
+	msg = ft_itoa(data->threads->nth);
+	mlx_string_put(data->mlx, data->mlx_win,
+			10, 520, 0xFFFFFF, "Threads   : ");
+	mlx_string_put(data->mlx, data->mlx_win,
+			130, 520, 0xFFFFFF, msg);
+	ft_memdel((void **)&msg);
 	msg = ft_itoa(data->z);
 	mlx_string_put(data->mlx, data->mlx_win,
 			10, 540, 0xFFFFFF, "Zoom      : ");

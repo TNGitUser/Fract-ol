@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 15:09:43 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 15:42:31 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 # include <math.h>
 
 # include <pthread.h>
-
-# include <stdio.h>
-# include <unistd.h>
 
 # define OUTER_COLOR0 0xeecda3
 # define INTER_COLOR0 0xef629f
@@ -77,7 +74,6 @@ typedef	struct	s_pos
 	t_dvector2	origin;
 	t_dvector2	v1;
 	t_dvector2	v2;
-	t_dvector2	vmouse;
 }				t_pos;
 
 typedef struct	s_data

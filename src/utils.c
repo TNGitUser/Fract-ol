@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 13:24:14 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:01:50 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	init_pos(t_data *data)
 	pos->v1.y = -3;
 	pos->v2.x = 3;
 	pos->v2.y = 3;
-	pos->vmouse.x = 0;
-	pos->vmouse.y = 0;
 	data->pos = pos;
 	init_image(data);
 }

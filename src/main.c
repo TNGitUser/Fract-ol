@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 10:20:39 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/02/28 16:02:21 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		main(int ac, char **av)
 	data = NULL;
 	(void)av;
 	if (ac != 2)
-		ft_die("usage: ./fractol [julia | mandelbrot] [-t num_of_thread]");
+		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship]");
 	if (ft_strcmp("julia", av[1]) == 0)
 		type = 0;
 	else if (ft_strcmp("mandelbrot", av[1]) == 0)
@@ -50,8 +50,7 @@ int		main(int ac, char **av)
 	else if (ft_strcmp("burningship", av[1]) == 0)
 		type = 3;
 	else
-		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship] \
-[-t num_of_thread]");
+		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship]");
 	data = init_main(20, type);
 	return (0);
 }
