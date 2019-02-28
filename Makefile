@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/28 14:57:38 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/02/28 15:35:24 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ obuild: $(OBJ) libft libmlx
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@gcc $(CFLAGS) $(OPT) -c $< $(CPPFLAGS) -o $@
+	@gcc $(CFLAGS) -c $< $(CPPFLAGS) -o $@
 
 .PHONY: libft libmlx clean fclean re
 
