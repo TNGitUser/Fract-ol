@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/28 15:35:24 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/03/04 08:19:40 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIB =	./libft.a ./libmlx.a
 CFLAGS = -Wall -Wextra -Werror
 CPPFLAGS = -I includes -I libft -I minilibx
 
-OPT = -O3 -mfpmath=sse -march=native
+OPT = -O3 -mfpmath=sse -march=native -frename-registers -funroll-loops
 LIBFLAGS = -framework OpenGL -framework AppKit -lm -lpthread
 
 ifndef VERBOSE

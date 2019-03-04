@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:49:45 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 16:13:36 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/04 08:23:29 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		show_help(t_data *data)
 		mlx_string_put(data->mlx, data->mlx_win,
 				10, 30, 0xFFFFFF, "Iteration        : '_' and '='");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 50, 0xFFFFFF, "Julia animation  : 'p'");
+				10, 50, 0xFFFFFF, "Julia animation  : 'a'");
 		mlx_string_put(data->mlx, data->mlx_win,
 				10, 70, 0xFFFFFF, "Colors           : '[(Numpad)1|2|3|4]'");
 		mlx_string_put(data->mlx, data->mlx_win,
@@ -121,7 +121,9 @@ void		show_help(t_data *data)
 		mlx_string_put(data->mlx, data->mlx_win,
 				10, 150, 0xFFFFFF, "Smooth           : 's'");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 170, 0xFFFFFF, "Quit             : 'Esc'");
+				10, 170, 0xFFFFFF, "Indicators       : 'i'");
+		mlx_string_put(data->mlx, data->mlx_win,
+				10, 160, 0xFFFFFF, "Quit             : 'Esc'");
 	}
 	show_indicator(data);
 }
