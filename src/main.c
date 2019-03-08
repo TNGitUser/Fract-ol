@@ -6,13 +6,13 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 16:14:50 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/08 11:41:32 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-void	init_draw(t_data *data)
+void		init_draw(t_data *data)
 {
 	t_image	*img;
 
@@ -33,7 +33,26 @@ void	init_draw(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-int		main(int ac, char **av)
+static int	check_type(char *str)
+{
+	if (ft_strcmp("julia", str) == 0)
+		return (0);
+	else if (ft_strcmp("mandelbrot", str) == 0)
+		return (1);
+	else if (ft_strcmp("tricorn", str) == 0)
+		return (2);
+	else if (ft_strcmp("burningship", str) == 0)
+		return (3);
+	else if (ft_strcmp("cubem", str) == 0)
+		return (4);
+	else if (ft_strcmp("perpendicularbs", str) == 0)
+		return (5);
+	else if (ft_strcmp("quinticm", str) == 0)
+		return (6);
+	return (-1);
+}
+
+int			main(int ac, char **av)
 {
 	int		type;
 	t_data	*data;
@@ -42,17 +61,11 @@ int		main(int ac, char **av)
 	data = NULL;
 	(void)av;
 	if (ac != 2)
-		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship]");
-	if (ft_strcmp("julia", av[1]) == 0)
-		type = 0;
-	else if (ft_strcmp("mandelbrot", av[1]) == 0)
-		type = 1;
-	else if (ft_strcmp("tricorn", av[1]) == 0)
-		type = 2;
-	else if (ft_strcmp("burningship", av[1]) == 0)
-		type = 3;
-	else
-		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship]");
+		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship"
+				" | perpendicularbs | cubem | quinticm]");
+	if ((type = check_type(av[1])) == -1)
+		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship"
+				" | perpendicularbs | cubem | quinticm]");
 	data = init_main(20, type);
 	return (0);
 }

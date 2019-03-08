@@ -6,7 +6,7 @@
 #    By: lucmarti <lucmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 15:37:09 by lucmarti          #+#    #+#              #
-#    Updated: 2019/02/28 15:18:01 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/03/04 08:55:48 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 
 %.o: %.c libft.h
-	@gcc -Wall -Wextra -Werror -o $@ -c $<
+	gcc -Wall -Wextra -Werror -o $@ -c $<
 
 clean:
 	@rm -f $(OBJ)

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.c                                            :+:      :+:    :+:   */
+/*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 11:01:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 15:28:04 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/08 12:06:08 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
-
+#include <stdio.h>
 int			key_pressed(int keycode, void *param)
 {
 	t_data *data;
 
 	data = (t_data *)param;
-	if (keycode >= 18 && keycode <= 21)
-		frac_manager(keycode % 18, data);
+	if ((keycode >= 18 && keycode <= 23) || keycode == 26)
+		frac_manager((keycode < 26 ? keycode % 18 : keycode % 20), data);
 	else if (keycode == 67)
 		data->f->plocked = !data->f->plocked;
 	else if (keycode == 15)

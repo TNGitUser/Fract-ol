@@ -6,11 +6,53 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 16:13:56 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/08 11:50:28 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
+
+t_frac			*init_stman(void)
+{
+	t_frac		*stman;
+
+	if (!(stman = malloc(sizeof(t_frac))))
+		ft_die("stman init failed.");
+	stman->zoom = 100;
+	stman->c_re = -2;
+	stman->c_im = 10;
+	stman->iteration = 50;
+	stman->type = 5;
+	return (stman);
+}
+
+t_frac			*init_quintm(void)
+{
+	t_frac		*quintm;
+
+	if (!(quintm = malloc(sizeof(t_frac))))
+		ft_die("quintm init failed.");
+	quintm->zoom = 100;
+	quintm->c_re = 15;
+	quintm->c_im = -10;
+	quintm->iteration = 50;
+	quintm->type = 6;
+	return (quintm);
+}
+
+t_frac			*init_cubicm(void)
+{
+	t_frac		*cubem;
+
+	if (!(cubem = malloc(sizeof(t_frac))))
+		ft_die("cubem init failed.");
+	cubem->zoom = 100;
+	cubem->c_re = 15;
+	cubem->c_im = -10;
+	cubem->iteration = 50;
+	cubem->type = 4;
+	return (cubem);
+}
 
 t_frac			*init_julia(void)
 {

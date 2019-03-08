@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 15:42:31 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/08 11:33:14 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ typedef struct	s_data
 {
 	void		*mlx;
 	void		*mlx_win;
-	void		*(*draw[4]) (void *);
-	t_frac		*(*init[4]) (void);
+	void		*(*draw[7]) (void *);
+	t_frac		*(*init[7]) (void);
 	int			width;
 	int			height;
 	int			z;
@@ -99,8 +99,11 @@ typedef struct	s_data
 void			init_draw(t_data *data);
 
 /*
-**		julia.c | mandelbrot.c
+**		julia.c | mandelbrot.c | druid.c | tricorn.c | burningship.c | stman.c
 */
+void			*stman_start(void *vdata);
+void			*quintm_start(void *vdata);
+void			*cubicm_start(void *vdata);
 void			*julia_start(void *vdata);
 void			*man_start(void *vdata);
 void			*tri_start(void *vdata);
@@ -109,6 +112,9 @@ void			*burn_start(void *vdata);
 /*
 **		init.c
 */
+t_frac			*init_stman(void);
+t_frac			*init_quintm(void);
+t_frac			*init_cubicm(void);
 t_frac			*init_julia(void);
 t_frac			*init_mandelbrot(void);
 t_frac			*init_tri(void);

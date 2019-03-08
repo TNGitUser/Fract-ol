@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 14:49:45 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/04 08:23:29 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/04 08:47:58 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void		show_help(t_data *data)
 		mlx_string_put(data->mlx, data->mlx_win,
 				10, 170, 0xFFFFFF, "Indicators       : 'i'");
 		mlx_string_put(data->mlx, data->mlx_win,
-				10, 160, 0xFFFFFF, "Quit             : 'Esc'");
+				10, 190, 0xFFFFFF, "Quit             : 'Esc'");
 	}
 	show_indicator(data);
 }

@@ -6,7 +6,7 @@
 #    By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/11 11:31:42 by lucmarti          #+#    #+#              #
-#    Updated: 2019/03/04 08:40:19 by lucmarti         ###   ########.fr        #
+#    Updated: 2019/03/08 11:39:46 by lucmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ TARGET = fractol
 
 SRC_PATH = ./src
 SRC_FILE := main.c init.c handler.c err.c julia.c mandelbrot.c threads.c utils.c
-SRC_FILE += pixel_color.c handler_aux.c tricorn.c burningship.c bonus.c
+SRC_FILE += pixel_color.c handler_aux.c tricorn.c burningship.c bonus.c cubicm.c
+SRC_FILE += stman.c quinticm.c
 
 OBJ_PATH = ./objs
 OBJ_FILE = $(SRC_FILE:.c=.o)
@@ -49,7 +50,7 @@ obuild: $(OBJ) libft libmlx
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@gcc $(CFLAGS) -c $< $(CPPFLAGS) -o $@
+	gcc $(CFLAGS) -c $< $(CPPFLAGS) -o $@
 
 .PHONY: libft libmlx clean fclean re
 
