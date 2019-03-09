@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 11:01:35 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 12:13:11 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 15:34:03 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int			mouse_move(int x, int y, void *param)
 	data = (t_data *)param;
 	if (!data->f->plocked)
 	{
-		data->f->c_re = -0.7 + (((float)x / 2 * (float)y / 2) / 100000);
-		data->f->c_im = 0.27015 + (((float)x / 2 * (float)y / 2) / 100000);
+		data->f->c_re = (long double)x / data->width;
+		data->f->c_im = (long double)y / data->height;
 		mlx_destroy_image(data->mlx, data->image->ptr);
 		data->image->ptr = mlx_new_image(data->mlx, data->width,
 				data->height);
