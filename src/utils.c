@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 11:55:41 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 13:11:45 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,4 @@ void	init_farray(t_data *data)
 	data->init[1] = &init_mandelbrot;
 	data->init[2] = &init_tri;
 	data->init[3] = &init_burn;
-	data->init[4] = &init_cubicm;
-	data->init[5] = &init_stman;
-	data->init[6] = &init_quadm;
-	data->init[7] = &init_bmoon;
 }

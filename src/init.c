@@ -6,69 +6,13 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 12:52:17 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 13:48:05 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-t_frac			*init_bmoon(void)
-{
-	t_frac		*bmoon;
-
-	if (!(bmoon = malloc(sizeof(t_frac))))
-		ft_die("bmoon init failed.");
-	bmoon->zoom = 100;
-	bmoon->c_re = -2;
-	bmoon->c_im = 10;
-	bmoon->iteration = 50;
-	bmoon->type = 7;
-	return (bmoon);
-}
-
-t_frac			*init_stman(void)
-{
-	t_frac		*stman;
-
-	if (!(stman = malloc(sizeof(t_frac))))
-		ft_die("stman init failed.");
-	stman->zoom = 100;
-	stman->c_re = -2;
-	stman->c_im = 10;
-	stman->iteration = 50;
-	stman->type = 5;
-	return (stman);
-}
-
-t_frac			*init_quadm(void)
-{
-	t_frac		*quadm;
-
-	if (!(quadm = malloc(sizeof(t_frac))))
-		ft_die("quadm init failed.");
-	quadm->zoom = 100;
-	quadm->c_re = 15;
-	quadm->c_im = -10;
-	quadm->iteration = 50;
-	quadm->type = 6;
-	return (quadm);
-}
-
-t_frac			*init_cubicm(void)
-{
-	t_frac		*cubem;
-
-	if (!(cubem = malloc(sizeof(t_frac))))
-		ft_die("cubem init failed.");
-	cubem->zoom = 100;
-	cubem->c_re = 15;
-	cubem->c_im = -10;
-	cubem->iteration = 50;
-	cubem->type = 4;
-	return (cubem);
-}
-
-t_frac			*init_julia(void)
+t_frac			*init_julia(int type)
 {
 	t_frac		*julia;
 
@@ -78,11 +22,11 @@ t_frac			*init_julia(void)
 	julia->c_re = -0.7;
 	julia->c_im = 0.27015;
 	julia->iteration = 50;
-	julia->type = 0;
+	julia->type = type;
 	return (julia);
 }
 
-t_frac			*init_mandelbrot(void)
+t_frac			*init_mandelbrot(int type)
 {
 	t_frac		*man;
 
@@ -92,11 +36,11 @@ t_frac			*init_mandelbrot(void)
 	man->c_re = -0.5;
 	man->c_im = 1;
 	man->iteration = 50;
-	man->type = 1;
+	man->type = type;
 	return (man);
 }
 
-t_frac			*init_burn(void)
+t_frac			*init_burn(int type)
 {
 	t_frac		*burn;
 
@@ -106,11 +50,11 @@ t_frac			*init_burn(void)
 	burn->c_re = -0.7;
 	burn->c_im = 0.27015;
 	burn->iteration = 50;
-	burn->type = 3;
+	burn->type = type;
 	return (burn);
 }
 
-t_frac			*init_tri(void)
+t_frac			*init_tri(int type)
 {
 	t_frac		*tri;
 
@@ -120,7 +64,7 @@ t_frac			*init_tri(void)
 	tri->c_re = -0.7;
 	tri->c_im = 0.27015;
 	tri->iteration = 50;
-	tri->type = 2;
+	tri->type = type;
 	return (tri);
 }
 
@@ -139,7 +83,7 @@ t_data			*init_main(int thread_number, int type)
 	data->height = 600;
 	init_farray(data);
 	data->f = NULL;
-	data->f = data->init[type]();
+	data->f = data->init[type > 3 ? 1 : type](type);
 	if (data->f == NULL)
 		ft_die("Fractal init failed.");
 	data->f->cs = 0;

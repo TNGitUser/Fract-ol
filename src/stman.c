@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 08:24:51 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 10:58:24 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 13:49:06 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	color(int i, t_data *data, t_vector2 *v, int color)
 	if (!data->f->smooth)
 	{
 		if (i == data->f->iteration)
-			color = 0;
+			return ;
 		else
 			color = get_scolor(data) * i;
 	}

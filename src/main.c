@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:57 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 11:27:52 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 13:42:26 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static int	check_type(char *str)
 		return (5);
 	else if (ft_strcmp("quadicm", str) == 0)
 		return (6);
+	else if (ft_strcmp("arrow", str) == 0)
+		return (7);
 	return (-1);
 }
 
@@ -62,10 +64,10 @@ int			main(int ac, char **av)
 	(void)av;
 	if (ac != 2)
 		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship"
-				" | perpendicularbs | cubem | quadicm]");
+				" | perpendicularbs | cubem | quadicm | arrow]");
 	if ((type = check_type(av[1])) == -1)
 		ft_die("usage: ./fractol [julia | mandelbrot | tricorn | burningship"
-				" | perpendicularbs | cubem | quadicm]");
+				" | perpendicularbs | cubem | quadicm | arrow]");
 	data = init_main(THREADS_NUM, type);
 	return (0);
 }
