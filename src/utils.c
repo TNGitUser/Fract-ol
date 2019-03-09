@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:52:21 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/08 12:05:59 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 11:55:41 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,14 @@ void	init_farray(t_data *data)
 	data->draw[3] = &burn_start;
 	data->draw[4] = &cubicm_start;
 	data->draw[5] = &stman_start;
-	data->draw[5] = &quintm_start;
+	data->draw[6] = &quadm_start;
+	data->draw[7] = &bmoon_start;
 	data->init[0] = &init_julia;
 	data->init[1] = &init_mandelbrot;
 	data->init[2] = &init_tri;
 	data->init[3] = &init_burn;
 	data->init[4] = &init_cubicm;
 	data->init[5] = &init_stman;
-	data->draw[6] = &quintm_start;
+	data->init[6] = &init_quadm;
+	data->init[7] = &init_bmoon;
 }

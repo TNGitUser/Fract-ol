@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stman.c                                            :+:      :+:    :+:   */
+/*   quadicm.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/08 08:24:51 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 10:58:24 by lucmarti         ###   ########.fr       */
+/*   Created: 2019/03/09 11:14:17 by lucmarti          #+#    #+#             */
+/*   Updated: 2019/03/09 11:14:18 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	color(int i, t_data *data, t_vector2 *v, int color)
 	pixel_color(data, v, color);
 }
 
-static void	stman_draw(long double c_r, long double c_i,
+static void	quadm_draw(long double c_r, long double c_i,
 		t_vector2 *v, t_data *data)
 {
 	long double	zr;
@@ -40,9 +40,10 @@ static void	stman_draw(long double c_r, long double c_i,
 	i = 0;
 	while (i < data->f->iteration && zr * zr + zi * zi < 4)
 	{
-		tmp = zr;
-		zr = zr * zr - zi * zi + c_r;
-		zi = -2 * tmp * ft_abs(zi) + c_i;
+		tmp = (zr * zr * zr * zr) - (6 * zr * zr * zi * zi) + (zi * zi * zi
+				* zi);
+		zi = (4 * zr * zr * zr * zi) - (4 * zr * zi * zi * zi) + c_i;
+		zr = tmp + c_r;
 		++i;
 	}
 	vz.x = zr;
@@ -50,7 +51,7 @@ static void	stman_draw(long double c_r, long double c_i,
 	color(i, data, v, normalize_color(i, &vz, data));
 }
 
-static void	stman_compute(long double xf_limit, long double yf_limit,
+static void	quadm_compute(long double xf_limit, long double yf_limit,
 		t_data *data)
 {
 	t_vector2	vec;
@@ -66,14 +67,14 @@ static void	stman_compute(long double xf_limit, long double yf_limit,
 		vec.y = 0;
 		while (vec.y < yf_limit && vec.y < data->height)
 		{
-			stman_draw(data->f->c_re, data->f->c_im, &vec, data);
+			quadm_draw(data->f->c_re, data->f->c_im, &vec, data);
 			++(vec.y);
 		}
 		++(vec.x);
 	}
 }
 
-void		*stman_start(void *vdata)
+void		*quadm_start(void *vdata)
 {
 	long double img_x;
 	long double img_y;
@@ -82,7 +83,7 @@ void		*stman_start(void *vdata)
 	data = (t_data *)vdata;
 	img_x = (data->pos->v2.x - data->pos->v1.x) * data->f->zoom;
 	img_y = (data->pos->v2.y - data->pos->v1.y) * data->f->zoom;
-	stman_compute(img_x, img_y, data);
+	quadm_compute(img_x, img_y, data);
 	pthread_exit(NULL);
 	return (NULL);
 }

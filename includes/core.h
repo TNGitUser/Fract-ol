@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:33:55 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/08 11:33:14 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 12:21:29 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define SINGLECOLOR3 0xdbd65c
 
 # define COLOR_CYCLE 100
+
+# define THREADS_NUM 20
 
 typedef	struct	s_frac
 {
@@ -80,8 +82,8 @@ typedef struct	s_data
 {
 	void		*mlx;
 	void		*mlx_win;
-	void		*(*draw[7]) (void *);
-	t_frac		*(*init[7]) (void);
+	void		*(*draw[8]) (void *);
+	t_frac		*(*init[8]) (void);
 	int			width;
 	int			height;
 	int			z;
@@ -101,8 +103,9 @@ void			init_draw(t_data *data);
 /*
 **		julia.c | mandelbrot.c | druid.c | tricorn.c | burningship.c | stman.c
 */
+void			*bmoon_start(void *vdata);
 void			*stman_start(void *vdata);
-void			*quintm_start(void *vdata);
+void			*quadm_start(void *vdata);
 void			*cubicm_start(void *vdata);
 void			*julia_start(void *vdata);
 void			*man_start(void *vdata);
@@ -112,8 +115,9 @@ void			*burn_start(void *vdata);
 /*
 **		init.c
 */
+t_frac			*init_bmoon(void);
 t_frac			*init_stman(void);
-t_frac			*init_quintm(void);
+t_frac			*init_quadm(void);
 t_frac			*init_cubicm(void);
 t_frac			*init_julia(void);
 t_frac			*init_mandelbrot(void);

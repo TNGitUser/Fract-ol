@@ -6,11 +6,25 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 09:34:00 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/08 11:50:28 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 12:52:17 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
+
+t_frac			*init_bmoon(void)
+{
+	t_frac		*bmoon;
+
+	if (!(bmoon = malloc(sizeof(t_frac))))
+		ft_die("bmoon init failed.");
+	bmoon->zoom = 100;
+	bmoon->c_re = -2;
+	bmoon->c_im = 10;
+	bmoon->iteration = 50;
+	bmoon->type = 7;
+	return (bmoon);
+}
 
 t_frac			*init_stman(void)
 {
@@ -26,18 +40,18 @@ t_frac			*init_stman(void)
 	return (stman);
 }
 
-t_frac			*init_quintm(void)
+t_frac			*init_quadm(void)
 {
-	t_frac		*quintm;
+	t_frac		*quadm;
 
-	if (!(quintm = malloc(sizeof(t_frac))))
-		ft_die("quintm init failed.");
-	quintm->zoom = 100;
-	quintm->c_re = 15;
-	quintm->c_im = -10;
-	quintm->iteration = 50;
-	quintm->type = 6;
-	return (quintm);
+	if (!(quadm = malloc(sizeof(t_frac))))
+		ft_die("quadm init failed.");
+	quadm->zoom = 100;
+	quadm->c_re = 15;
+	quadm->c_im = -10;
+	quadm->iteration = 50;
+	quadm->type = 6;
+	return (quadm);
 }
 
 t_frac			*init_cubicm(void)
