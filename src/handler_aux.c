@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:49:33 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/02/28 14:59:07 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/09 14:45:04 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	move_update(int keycode, t_data *data)
 {
 	if (keycode == 123 || keycode == 124)
 	{
-		data->pos->v1.x = keycode == 123 ? data->pos->v1.x + \
+		data->pos->v1.x = keycode == 123 ? data->pos->v1.x - \
 						(0.1 / (data->f->zoom / 1000)) : \
-						data->pos->v1.x - (0.1 / (data->f->zoom / 1000));
+						data->pos->v1.x + (0.1 / (data->f->zoom / 1000));
 	}
 	else if (keycode == 125 || keycode == 126)
 	{
-		data->pos->v1.y = keycode == 126 ? data->pos->v1.y + \
+		data->pos->v1.y = keycode == 126 ? data->pos->v1.y - \
 						(0.1 / (data->f->zoom / 1000)) : \
-						data->pos->v1.y - (0.1 / (data->f->zoom / 1000));
+						data->pos->v1.y + (0.1 / (data->f->zoom / 1000));
 	}
 }
 
