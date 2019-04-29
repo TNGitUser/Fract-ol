@@ -6,7 +6,7 @@
 /*   By: lucmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 11:46:04 by lucmarti          #+#    #+#             */
-/*   Updated: 2019/03/09 13:13:13 by lucmarti         ###   ########.fr       */
+/*   Updated: 2019/03/10 11:26:57 by lucmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	color(int i, t_data *data, t_vector2 *v, int color)
 {
 	if (!data->f->smooth)
 	{
-		if (i == data->f->iteration || i == 0)
+		if (i >= data->f->iteration || i == 0)
 			return ;
 		else
 			color = get_scolor(data) * i;
@@ -45,8 +45,8 @@ static void	bmoon_draw(long double c_r, long double c_i,
 					* c_r + c_i * c_i));
 		zr = (zr * c_r / (c_r * c_r + c_i * c_i)) + (tmp * c_i / (c_r
 					* c_r + c_i * c_i));
-		zi = -sinl(zr) * sinhl(zi);
-		zr = cosl(zr) * coshl(zi);
+		zi = -sin(zr) * sinh(zi);
+		zr = cos(zr) * cosh(zi);
 		++i;
 	}
 	vz.x = zr;
